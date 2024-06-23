@@ -11,6 +11,11 @@ try {
     target: ["node20.10"],
     packages: "external", //this means esbuild wont bundle the node_modules
     outfile: "dist/server.js",
+    define: {
+      "process.env.NODE_ENV": process.env.NODE_ENV
+        ? process.env.NODE_ENV
+        : "'development'",
+    },
   });
   await ctx.watch();
 } catch (error) {
