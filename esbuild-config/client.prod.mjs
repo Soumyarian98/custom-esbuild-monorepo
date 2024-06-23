@@ -1,5 +1,6 @@
 import * as esbuild from "esbuild";
 import { sassPlugin } from "esbuild-sass-plugin";
+import postcss from "esbuild-postcss";
 
 try {
   await esbuild.build({
@@ -11,7 +12,7 @@ try {
     define: {
       "process.env.NODE_ENV": "'production'",
     },
-    plugins: [sassPlugin({ type: "style" })],
+    plugins: [postcss(), sassPlugin({ type: "style" })],
   });
   console.log("Client bundled successfully for production!");
 } catch (error) {
