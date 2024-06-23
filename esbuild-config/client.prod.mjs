@@ -3,7 +3,7 @@ import { sassPlugin } from "esbuild-sass-plugin";
 
 try {
   await esbuild.build({
-    entryPoints: ["/src/client/index.tsx"],
+    entryPoints: ["src/client/index.tsx"],
     bundle: true,
     sourcemap: true,
     minify: true,
