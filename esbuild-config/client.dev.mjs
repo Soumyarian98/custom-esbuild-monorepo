@@ -1,10 +1,8 @@
 import * as esbuild from "esbuild";
 import { sassPlugin } from "esbuild-sass-plugin";
 
-let ctx;
-
 try {
-  ctx = await esbuild.context({
+  let ctx = await esbuild.context({
     entryPoints: ["src/client/index.tsx"],
     bundle: true,
     minify: false,
@@ -12,6 +10,7 @@ try {
     outfile: "public/static/bundle.js",
     plugins: [sassPlugin({ type: "style" })],
     define: {
+      // This is required because browser doesn't have a process.env.NODE_ENV enviournment variable
       "process.env.NODE_ENV": process.env.NODE_ENV
         ? process.env.NODE_ENV
         : "'development'",
