@@ -5,7 +5,11 @@ import "./styles/app.scss";
 
 // Reload the window whenever esbuild sends the changes event
 // EventSource is used to look for server sent events.
-new EventSource("/esbuild").addEventListener("change", () => location.reload());
+if (process.env.NODE_ENV === "development") {
+  new EventSource("/esbuild").addEventListener("change", () =>
+    location.reload()
+  );
+}
 
 const root = ReactDom.createRoot(
   document.getElementById("root") as HTMLElement

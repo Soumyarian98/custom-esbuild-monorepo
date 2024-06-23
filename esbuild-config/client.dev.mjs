@@ -11,6 +11,11 @@ try {
     sourcemap: true,
     outfile: "public/static/bundle.js",
     plugins: [sassPlugin({ type: "style" })],
+    define: {
+      "process.env.NODE_ENV": process.env.NODE_ENV
+        ? process.env.NODE_ENV
+        : "'development'",
+    },
   });
 
   // This will constantly check the file changes and bundle it.
@@ -21,6 +26,7 @@ try {
   const { host, port } = await ctx.serve({
     servedir: "public",
     fallback: "index.html",
+    port: 3000,
   });
   console.log(`Hot refresh at http://localhost:${port}`);
 } catch (error) {
